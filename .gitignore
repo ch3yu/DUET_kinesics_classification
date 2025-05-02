@@ -1,0 +1,10 @@
+.vscode/
+__pycache__/
+mmaction2/
+work_dirs/
+experiment/experiment_*/experiment_batch_*/
+experiment/experiment_*/*.pkl
+experiment/experiment_*/*.npy
+*.pkl
+DUET_*.py
+skeleton_feature_extraction.py

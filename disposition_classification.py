@@ -13,7 +13,7 @@ from helper import CNN
 from helper import helper
 
 def main():
-    raw_data_path = r"D:\3D joints"
+    raw_data_path = r".\data"
     categories = {
         "emblems": [0, 1, 2],
         "illustrators": [3, 4],
@@ -41,20 +41,20 @@ def main():
         print(f"Experiment {idx}:")
         print(f"Activities: {actions}")
         print(f"Finished extracting keypoint data for experiment_{idx}...")
-        config_file_path = os.path.join(f".\experiment_{idx}", f"DUET_experiment_{idx}_config.py")
+        config_file_path = os.path.join(f".\experiment\experiment_{idx}", f"DUET_experiment_{idx}_config.py")
         result = subprocess.run([sys.executable, r".\mmaction2\tools\train.py", config_file_path, '--seed', '42'])
         print(f"Finished training ST-GCN for experiment_{idx}...")
 
         checkpoint_file_path = glob.glob(os.path.join(".\work_dirs", f"DUET_experiment_{idx}_config", "best_acc_top1_epoch_*.pth"))
         device = "cuda"
-        pickle_path = os.path.join(f".\experiment_{idx}", f"experiment_{idx}.pkl")
+        pickle_path = os.path.join(f".\experiment\experiment_{idx}", f"experiment_{idx}.pkl")
         helper.extract_features(config_file_path, checkpoint_file_path[0], pickle_path, device, idx, test_list)
         print(f"Finished extracting hidden features for experiment_{idx}...")
 
-        features_train = np.load(os.path.join(f".\experiment_{idx}", "train.npy"))
-        activity_train = np.load(os.path.join(f".\experiment_{idx}", "train_label.npy"))
-        features_test = np.load(os.path.join(f".\experiment_{idx}", "gtest.npy"))
-        activity_test = np.load(os.path.join(f".\experiment_{idx}", "g_label.npy"))
+        features_train = np.load(os.path.join(f".\experiment\experiment_{idx}", "train.npy"))
+        activity_train = np.load(os.path.join(f".\experiment\experiment_{idx}", "train_label.npy"))
+        features_test = np.load(os.path.join(f".\experiment\experiment_{idx}", "gtest.npy"))
+        activity_test = np.load(os.path.join(f".\experiment\experiment_{idx}", "g_label.npy"))
         features_train = np.reshape(features_train, (features_train.shape[0], 1, features_train.shape[1]))
         features_test = np.reshape(features_test, (features_test.shape[0], 1, features_test.shape[1]))
 

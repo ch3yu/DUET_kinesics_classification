@@ -76,8 +76,8 @@ def extract_keypoints(actions, path, test_list, experiment_num):
                     dataset["split"]["xsub_train"].append(f"{location}{label:02d}{subject}/{time_start}_{time_end}")
 
     
-    os.makedirs(f"experiment_{experiment_num}", exist_ok=True)
-    pickle_filename = os.path.join(f"experiment_{experiment_num}", f"experiment_{experiment_num}.pkl")
+    os.makedirs(f".\experiment\experiment_{experiment_num}", exist_ok=True)
+    pickle_filename = os.path.join(f".\experiment\experiment_{experiment_num}", f"experiment_{experiment_num}.pkl")
 
     print("Writing to pickle file...")
     with open(pickle_filename, "wb") as file: 
@@ -147,10 +147,10 @@ def extract_features(config_file_path, checkpoint_file_path, data_path, device, 
                     labels_train = np.concatenate((labels_train, np.array([data['annotations'][index]['label']])))
                 train_tracker = train_tracker + 1
 
-    np.save(os.path.join(f".\experiment_{experiment_num}", "train.npy"), features_train)
-    np.save(os.path.join(f".\experiment_{experiment_num}", "train_label.npy"), labels_train)
-    np.save(os.path.join(f".\experiment_{experiment_num}", "gtest.npy"), features_test)
-    np.save(os.path.join(f".\experiment_{experiment_num}", "g_label.npy"), labels_test)
+    np.save(os.path.join(f".\experiment\experiment_{experiment_num}", "train.npy"), features_train)
+    np.save(os.path.join(f".\experiment\experiment_{experiment_num}", "train_label.npy"), labels_train)
+    np.save(os.path.join(f".\experiment\experiment_{experiment_num}", "gtest.npy"), features_test)
+    np.save(os.path.join(f".\experiment\experiment_{experiment_num}", "g_label.npy"), labels_test)
 
 if __name__ == "__main__":
     pass
