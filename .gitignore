@@ -2,9 +2,10 @@
 __pycache__/
 mmaction2/
 work_dirs/
-experiment/experiment_*/experiment_batch_*/
-experiment/experiment_*/*.pkl
-experiment/experiment_*/*.npy
 *.pkl
 DUET_*.py
 skeleton_feature_extraction.py
+experiment/experiment_*/experiment_batch_*/
+experiment/experiment_*/experiment_*.pkl
+experiment/experiment_*/*.npy
+!experiment/experiment_*/DUET_experiment_*_config.py
